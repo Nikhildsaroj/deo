@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Baymax AI Model Testing</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #343a40;
+            padding: 10px 0;
+        }
+
+        .header .navbar-brand {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .header .navbar-brand img {
+             max-height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            margin-right: 45px;
+        }
+
+        .hero-section {
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+
+        .hero-section p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+
+        .btn-lg {
+            font-size: 1.25rem;
+        }
+
+        .model-section {
+            padding: 60px 0;
+            background-color: #ffffff;
+            border-top: 5px solid #007bff;
+            border-bottom: 5px solid #007bff;
+        }
+
+        .model-section h2 {
+            margin-bottom: 40px;
+            font-weight: bold;
+        }
+
+        .model-card {
+            margin-bottom: 30px;
+            border: none;
+            transition: transform 0.2s;
+        }
+
+        .model-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .model-card .card-body {
+            padding: 25px;
+        }
+
+        .model-card .card-img-top {
+            border-radius: 0;
+        }
+
+        .features-section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+
+        .features-section h2 {
+            margin-bottom: 40px;
+            font-weight: bold;
+        }
+
+        .features-section .feature-item {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #ffffff;
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+        }
+
+        .features-section .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .testimonial {
+            margin: 20px 0;
+        }
+
+        .testimonial p {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="#">
+                    <img src="data:image/png;base64,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" alt="Baymax Logo">
+                    Baymax
+                </a>
+            </nav>
+            
+        </div>
+        
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero-section" style="background-color: #f4f4f4;">
+        <div class="container text-center">
+            <h1 class="display-4" style="color: black;">Welcome, <span id="username"></span>!</h1>
+            <p class="lead" style="color: black;">Explore AI models, including Dog vs Cat classifiers, Movie and Anime recommendations, and more.</p>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-danger btn-lg" onclick="logout()">Logout</button>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Models Section -->
+    <div class="model-section">
+        <div class="container">
+            <h2 class="text-center">Explore Our AI Models</h2>
+            <div class="row">
+                <!-- Dog vs. Cat Classifier -->
+                <div class="col-md-4">
+                    <div class="card model-card">
+                        <img src="https://camo.githubusercontent.com/b99661f71e18940b5314f52ab9c3c08b7a86328995f3776b09379a8d4d422146/68747470733a2f2f63646e2e616e616c79746963737669646879612e636f6d2f77702d636f6e74656e742f75706c6f6164732f323032342f30322f4361742d616e642d446f672d436c617373696669636174696f6e2d38302e6a7067" class="card-img-top" alt="Dog vs. Cat Classifier">
+                        <div class="card-body">
+                            <h5 class="card-title">Dog vs. Cat Classifier</h5>
+                            <p class="card-text">An AI model that can distinguish between dogs and cats with high accuracy.</p>
+                            <ul class="list-unstyled">
+                                <li><strong>Accuracy:</strong> 95%</li>
+                                <li><strong>Model Type:</strong> Convolutional Neural Network</li>
+                                <li><strong>Data Size:</strong> 25,000 images</li>
+                            </ul>
+                            <a href="http://localhost:8000/" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Movie Recommender -->
+                <div class="col-md-4">
+                    <div class="card model-card">
+                       <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f562aaf4-5dbb-4603-a32b-6ef6c2230136/dh0w8qv-9d8ee6b2-b41a-4681-ab9b-8a227560dc75.jpg/v1/fill/w_1280,h_720,q_75,strp/the_netflix_login_background__canada__2024___by_logofeveryt_dh0w8qv-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvZjU2MmFhZjQtNWRiYi00NjAzLWEzMmItNmVmNmMyMjMwMTM2XC9kaDB3OHF2LTlkOGVlNmIyLWI0MWEtNDY4MS1hYjliLThhMjI3NTYwZGM3NS5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.LOYKSxIDqfPwWHR0SSJ-ugGQ6bECF0yO6Cmc0F26CQs" alt="Movie Recommender">
+                      
+                        <div class="card-body">
+                            <h5 class="card-title">Movie Recommender</h5>
+                            <p class="card-text">Get personalized movie recommendations based on your preferences.</p>
+                            <ul class="list-unstyled">
+                                <li><strong>Recommendation Algorithm:</strong> Collaborative Filtering</li>
+                                <li><strong>Supported Genres:</strong> Action, Romance, Thriller, etc.</li>
+                                <li><strong>Data Source:</strong> TMDB API</li>
+                            </ul>
+                            <a href="http://localhost:8001/" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Anime Recommender -->
+                <div class="col-md-4">
+                    <div class="card model-card">
+                        <img src="https://c4.wallpaperflare.com/wallpaper/763/361/232/bleach-anime-uzumaki-naruto-gon-cs-rurouni-kennshin-hd-wallpaper-preview.jpg" class="card-img-top" alt="Anime Recommender">
+                        <div class="card-body">
+                            <h5 class="card-title">Anime Recommender</h5>
+                            <p class="card-text">Find new anime shows and movies tailored to your taste.</p>
+                            <ul class="list-unstyled">
+                                <li><strong>Recommendation Algorithm:</strong> Content-Based Filtering</li>
+                                <li><strong>Supported Genres:</strong> Action, Fantasy, Drama, etc.</li>
+                                <li><strong>Data Source:</strong> MyAnimeList API</li>
+                            </ul>
+                            <a href="http://localhost:8002/" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-section">
+        <div class="container">
+            <h2 class="text-center">Why Choose Our Models?</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h5>Fast and Efficient</h5>
+                        <p>Our AI models are optimized for speed, ensuring quick and accurate results.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h5>Secure and Reliable</h5>
+                        <p>We prioritize security and reliability to ensure your data is protected.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h5>Cutting-Edge Technology</h5>
+                        <p>Our models are built using the latest technologies and frameworks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section class="bg-dark text-light text-center py-5">
+        <div class="container">
+            <h2 class="mb-4">What Our Users Say</h2>
+            <div class="row">
+                <div class="col-md-4 testimonial">
+                    <p>"Baymax has revolutionized the way I approach AI model testing. It's fast, accurate, and easy to use!"</p>
+                    <small>- Jane Doe, Data Scientist</small>
+                </div>
+                <div class="col-md-4 testimonial">
+                    <p>"The Movie Recommender is spot-on! I discovered so many great movies that I would have missed otherwise."</p>
+                    <small>- John Smith, Film Enthusiast</small>
+                </div>
+                <div class="col-md-4 testimonial">
+                    <p>"As an anime lover, the Anime Recommender has become my go-to tool. Highly recommend!"</p>
+                    <small>- Sakura Tanaka, Anime Fan</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Baymax. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Example script for user data
+        const username = localStorage.getItem('username');
+        document.getElementById('username').innerText = username || ' VIP Member';
+
+        function logout() {
+            localStorage.removeItem('username');
+            window.location.href = 'home.jsp';
+        }
+    </script>
+</body>
+
+</html>
